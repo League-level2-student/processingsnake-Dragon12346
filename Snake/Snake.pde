@@ -1,4 +1,3 @@
-
 // 1. Follow the recipe instructions inside the Segment class.
 
 // The Segment class will be used to represent each part of the moving snake.
@@ -47,8 +46,8 @@ int foodEaten = 1;
 // 8. Create and initialize foodX and foodY variables to hold the location of the food.
 
 // (Hint: use the random method to set both the x and y to random locations within the screen size (500 by 500).)
-int foodX = ((int)random(50)*10);
-int foodY = ((int)random(50)*10);
+int foodX = ((int)random(200)*10-50);
+int foodY = ((int)random(100)*10);
 //int foodX = ((int)random(50)*10);
 
 
@@ -95,7 +94,7 @@ image(face, foodX, foodY);
 
 void drawSnake() {
   fill(255,0,0);
-rect(head.getX(),head.getY(),40,40);
+rect(head.getX(),head.getY(),50,50);
 
   //test your code
 }
@@ -184,7 +183,7 @@ void collision() {
   if (head.xSeg + 50 > foodX && head.xSeg < foodX + 50 && head.ySeg + 50 >foodY && head.ySeg < foodY + 50) {
     foodEaten = foodEaten+ 1;
     print(foodEaten);
-    foodX = ((int)random(100)*10);
+    foodX = ((int)random(200)*10-50);
     foodY = ((int)random(100)*10);
   }
 
@@ -223,7 +222,7 @@ void drawTail() {
   // Draw a 10 by 10 rectangle for each Segment in your snake ArrayList.
   for (int i = 0; i<tail.size();i++){
   fill(255,0,0);
-  rect(tail.get(i).getX(),tail.get(i).getY(),40,40);
+  rect(tail.get(i).getX(),tail.get(i).getY(),50,50);
   }
 }
 
@@ -231,7 +230,11 @@ void drawTail() {
 // 3. Complete the missing parts of the bodyCollision method below.
 
 void checkTailCollision() {
-
+for (int i = 0;i<tail.size();i++){
+  if(tail.get(i).getX()==head.getX() && tail.get(i).getY()==head.getY()){
+    foodEaten = 0;
+  }
+}
   // If your head has the same location as one of your segments...
 
   
